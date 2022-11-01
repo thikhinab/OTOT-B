@@ -30,4 +30,4 @@ jobs:
           appdir: "backend"
         env:
           NODE_ENV: "${{secrets.NODE_ENV}}"
-          MONGODB_URI: "${{secrets.MONGODB_URI}}"
+          MONGODB_URI: "${{secrets.MONGODB_URI_PROD}}"
