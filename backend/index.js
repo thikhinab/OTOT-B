@@ -1,28 +1,48 @@
-import express from 'express';
-import mongoose from 'mongoose'
-import parser from 'body-parser'
-import dotenv from 'dotenv'
-import { MongoMemoryServer } from 'mongodb-memory-server';
+import express from "express";
+import mongoose from "mongoose";
+import parser from "body-parser";
+import dotenv from "dotenv";
+import { MongoMemoryServer } from "mongodb-memory-server";
 
-import bookRouter from './routes/book-router.js'
-dotenv.config()
-console.log(process.env.VIMUTH)
+import bookRouter from "./routes/book-router.js";
+dotenv.config();
+console.log(process.env.VIMUTH);
 const env = process.env.NODE_ENV || "development";
 
 const app = express();
 const port = process.env.PORT || 8080;
 
-
-let mongoDbUri = ""
+// Set up database
 if (env === "production") {
-  mongoDbUri = process.env.MONGODB_URI_PROD
+  mongoose.connect(
+    process.env.MONGODB_URI_PROD,
+    () => console.log("Connected to Database"),
+    (err) => console.log(err)
+  );
 } else {
-  const mongoServer = await MongoMemoryServer.create();
-  mongoDbUri = mongoServer.getUri()
+  (async () => {
+    mongoServer = await MongoMemoryServer.create();
+    const mongoUri = mongoServer.getUri();
+
+    await mongoose.connect(
+      mongoUri,
+      {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      },
+      () => console.log("Connected to Database"),
+      (err) => console.log(err)
+    );
+  })();
 }
 
 // Debugging
-console.log("variables:", env, process.env.MONGODB_URI_PROD, process.env.VIMUTH)
+console.log(
+  "variables:",
+  env,
+  process.env.MONGODB_URI_PROD,
+  process.env.VIMUTH
+);
 
 mongoose.connect(
   mongoDbUri,
