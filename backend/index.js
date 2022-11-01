@@ -21,7 +21,7 @@ if (env === "production") {
   );
 } else {
   (async () => {
-    mongoServer = await MongoMemoryServer.create();
+    const mongoServer = await MongoMemoryServer.create();
     const mongoUri = mongoServer.getUri();
 
     await mongoose.connect(
@@ -42,12 +42,6 @@ console.log(
   env,
   process.env.MONGODB_URI_PROD,
   process.env.VIMUTH
-);
-
-mongoose.connect(
-  mongoDbUri,
-  () => console.log("Connected to Database"),
-  (err) => console.log(err)
 );
 
 app.use("/api/books", parser.json(), bookRouter);
