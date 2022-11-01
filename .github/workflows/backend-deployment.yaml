@@ -29,6 +29,6 @@ jobs:
           heroku_email: ${{secrets.HEROKU_EMAIL}}
           appdir: "backend"
         env:
-          VIMUTH: ${{secrets.VIMUTH}}
-          NODE_ENV: ${{secrets.NODE_ENV}}
-          MONGODB_URI_PROD: ${{secrets.MONGODB_URI_PROD}}
+          HD_VIMUTH: ${{secrets.VIMUTH}}
+          HD_NODE_ENV: ${{secrets.NODE_ENV}}
+          HD_MONGODB_URI_PROD: ${{secrets.MONGODB_URI_PROD}}
