@@ -1,0 +1,14 @@
+import express from 'express'
+import {getAll, getByIsbn13, createBook, updateByIsbn13, deleteByIsbn13} from '../controllers/book-controller.js'
+
+const bookRouter = express.Router();
+
+bookRouter.route("/").get(getAll).post(createBook);
+
+bookRouter
+  .route("/:isbn13")
+  .get(getByIsbn13)
+  .put(updateByIsbn13)
+  .delete(deleteByIsbn13);
+
+export default bookRouter;
