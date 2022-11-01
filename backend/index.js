@@ -20,6 +20,9 @@ if (env === "production") {
   mongoDbUri = mongoServer.getUri()
 }
 
+// Debugging
+console.log("variables:", env, mongoDbUri)
+
 mongoose.connect(
   mongoDbUri,
   () => console.log("Connected to Database"),
