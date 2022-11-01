@@ -6,6 +6,7 @@ import { MongoMemoryServer } from 'mongodb-memory-server';
 
 import bookRouter from './routes/book-router.js'
 dotenv.config()
+console.log(process.env.VIMUTH)
 const env = process.env.NODE_ENV || "development";
 
 const app = express();
@@ -21,7 +22,7 @@ if (env === "production") {
 }
 
 // Debugging
-console.log("variables:", env, process.env.MONGODB_URI_PROD)
+console.log("variables:", env, process.env.MONGODB_URI_PROD, process.env.VIMUTH)
 
 mongoose.connect(
   mongoDbUri,
