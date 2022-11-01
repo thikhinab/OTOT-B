@@ -21,7 +21,7 @@ if (env === "production") {
 }
 
 // Debugging
-console.log("variables:", env, mongoDbUri)
+console.log("variables:", env, process.env.MONGODB_URI_PROD)
 
 mongoose.connect(
   mongoDbUri,
