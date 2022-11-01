@@ -8,15 +8,18 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: 'backend'
     steps:
       - name: Deploy backend
         uses: actions/checkout@v2
-      - name: Use Node.js 16.x
+      - name: Use Node.js 16
         uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version: 16
           cache: 'npm'
-          cache-dependency-path: backend/package-lock.json
+          cache-dependency-path: './backend/package-lock.json'
       - run: npm ci
       - name: Deploy to heroku
         uses: akhileshns/heroku-deploy@v3.12.12
