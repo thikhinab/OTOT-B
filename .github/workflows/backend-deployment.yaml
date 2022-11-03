@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: 'backend'
+        working-directory: "backend"
     steps:
       - name: Deploy backend
         uses: actions/checkout@v2
@@ -18,8 +18,8 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
-          cache: 'npm'
-          cache-dependency-path: './backend/package-lock.json'
+          cache: "npm"
+          cache-dependency-path: "./backend/package-lock.json"
       - run: npm ci
       - name: Deploy to heroku
         uses: akhileshns/heroku-deploy@v3.12.12
@@ -29,6 +29,5 @@ jobs:
           heroku_email: ${{secrets.HEROKU_EMAIL}}
           appdir: "backend"
         env:
-          HD_VIMUTH: ${{secrets.VIMUTH}}
           HD_NODE_ENV: ${{secrets.NODE_ENV}}
           HD_MONGODB_URI_PROD: ${{secrets.MONGODB_URI_PROD}}
