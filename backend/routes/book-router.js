@@ -1,5 +1,11 @@
-import express from 'express'
-import {getAll, getByIsbn13, createBook, updateByIsbn13, deleteByIsbn13} from '../controllers/book-controller.js'
+import express from "express";
+import {
+  getAll,
+  getByIsbn13,
+  createBook,
+  updateByIsbn13,
+  deleteByIsbn13,
+} from "../controllers/book-controller.js";
 
 const bookRouter = express.Router();
 
@@ -10,5 +16,12 @@ bookRouter
   .get(getByIsbn13)
   .put(updateByIsbn13)
   .delete(deleteByIsbn13);
+
+bookRouter.all("*", async (req, res) => {
+  return res.status(404).json({
+    status: "error",
+    message: `Invalid URL`,
+  });
+});
 
 export default bookRouter;
