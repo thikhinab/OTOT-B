@@ -8,6 +8,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: "backend"
 
     steps:
       - name: Git checkout
@@ -30,3 +33,4 @@ jobs:
       - run: npm test
         env:
           CI: true
+          NODE_ENV: "testing"
