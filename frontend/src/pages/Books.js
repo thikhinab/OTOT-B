@@ -20,8 +20,6 @@ const Books = () => {
     title: "",
   });
 
-  console.log(form);
-
   const getBooks = async () => {
     try {
       const result = await axios.get(URL);
@@ -44,7 +42,6 @@ const Books = () => {
       newState.isbn13 = "";
       newState.title = "";
       newState.author = "";
-      console.log("newState", newState);
       return newState;
     });
   };
