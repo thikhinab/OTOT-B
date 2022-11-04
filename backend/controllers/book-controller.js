@@ -1,4 +1,4 @@
-import Book from '../models/book-model.js'
+import Book from "../models/book-model.js";
 
 // Get all books
 const getAll = async (req, res) => {
@@ -38,7 +38,7 @@ const createBook = async (req, res) => {
       data: book,
     });
   } catch (err) {
-    res.status(500).json({
+    res.status(400).json({
       status: "error",
       message: err.message,
     });
@@ -128,4 +128,4 @@ const deleteByIsbn13 = async (req, res) => {
   }
 };
 
-export { getAll, createBook, getByIsbn13, deleteByIsbn13, updateByIsbn13}
+export { getAll, createBook, getByIsbn13, deleteByIsbn13, updateByIsbn13 };
