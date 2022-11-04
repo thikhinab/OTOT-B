@@ -2,12 +2,14 @@ import express from "express";
 import mongoose from "mongoose";
 import parser from "body-parser";
 import dotenv from "dotenv";
+import cors from "cors";
 
 import bookRouter from "./routes/book-router.js";
 dotenv.config();
 const env = process.env.NODE_ENV || "development";
 
 const app = express();
+app.use(cors());
 const port = process.env.PORT || 8080;
 
 // Set up database
